@@ -17,7 +17,6 @@ unsafe fn main1() -> ! {
     }
 }
 
-#[no_mangle]
 unsafe extern "C" fn main2() -> ! {
     loop {
         write_reg!(gpio, GPIOB, BSRR, BS14: 1);
