@@ -1,0 +1,5 @@
+[default.general]
+chip = "STM32H745ZITx"
+
+[default.probe]
+speed = 8000
