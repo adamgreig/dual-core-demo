@@ -38,6 +38,8 @@ MEMORY
 REGION_ALIAS(FLASH, FLASH1);
 REGION_ALIAS(RAM, DTCMRAM);
 
+_cpu2_stack_start = ORIGIN(SRAM2) + LENGTH(SRAM2);
+
 /* Define sections for placing symbols into the extra memory regions above. */
 SECTIONS {
   .axisram (NOLOAD) : ALIGN(8) {
@@ -71,6 +73,8 @@ SECTIONS {
   } > ITCM AT > FLASH
 
   .flash2 : ALIGN(4) {
+   LONG(_cpu2_stack_start);
+   KEEP(*(.flash2.reset_vector));
    KEEP(*(.flash2.vector_table));
    *(.flash2 .flash2.*);
    . = ALIGN(4);

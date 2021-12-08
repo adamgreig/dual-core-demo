@@ -27,15 +27,6 @@ unsafe extern "C" fn main2() -> ! {
     }
 }
 
-#[repr(C)]
-pub struct VTable {
-    sp: u32,
-    pc: unsafe extern "C" fn() -> !,
-}
-
 #[no_mangle]
-#[link_section=".flash2.vector_table"]
-pub static CPU2_VTABLE: VTable = VTable {
-    sp: 0x30020000,
-    pc: main2
-};
+#[link_section=".flash2.reset_vector"]
+pub static CPU2_RESET_VECTOR: unsafe extern "C" fn() -> ! = main2;
